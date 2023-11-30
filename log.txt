@@ -1,3 +1,4 @@
 New message created, count: 0
 New message created, count: 1
 New message created, count: 2
+New message created, count: 3

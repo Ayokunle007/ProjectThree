@@ -27,21 +27,22 @@ public class UserDemoController {
         return stringBuilder.toString();
     }
 
+    @PostMapping("/messages1")
+    public String postMessage(@RequestBody String message) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true))) {
+            bufferedWriter.write(message + "#");
+            long count = this.getMessageCount();
+            logActivity(count);
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return " Message SuccessfulLy Saved ";
+    }
+
     public long getMessageCount() throws IOException {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file1))) {
             return bufferedReader.lines().count();
         }
-    }
-
-    @PostMapping("/count")
-    public String logMessage(@RequestBody String message) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file1, true))) {
-            bufferedWriter.write(message + "#");
-        } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return message;  //logActivity();
-
     }
 
     public String logActivity(long count) {
@@ -54,17 +55,7 @@ public class UserDemoController {
         return "done";
     }
 
-    @PostMapping("/messages1")
-    public String postMessage(@RequestBody String message) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true))) {
-            bufferedWriter.write(message + "#");
-            long count = this.getMessageCount();
-            logActivity(count);
-        } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return " Message SuccessfulLy Saved ";
-    }
+
 }
 
 
