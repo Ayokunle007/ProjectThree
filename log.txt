@@ -1,0 +1,3 @@
+New message created, count: 0
+New message created, count: 1
+New message created, count: 2
